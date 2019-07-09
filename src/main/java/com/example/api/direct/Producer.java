@@ -1,6 +1,6 @@
-package com.example.demo.direct;
+package com.example.api.direct;
 
-import com.example.demo.conf.ConnectionConfig;
+import com.example.api.conf.ConnectionConfig;
 import com.rabbitmq.client.Channel;
 
 import java.io.IOException;

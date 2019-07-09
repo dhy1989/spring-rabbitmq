@@ -1,6 +1,6 @@
-package com.example.demo.topic;
+package com.example.api.topic;
 
-import com.example.demo.conf.ConnectionConfig;
+import com.example.api.conf.ConnectionConfig;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.QueueingConsumer;
 
