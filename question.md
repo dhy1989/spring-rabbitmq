@@ -18,3 +18,6 @@
     `方案二`:利用redis的原子性去实现
 #在海量订单业务的时候如何保证消息不被重复消费
 #Confirm确认消息,Return返回消息
+ 如何实现confirm确认消息
+ 1.在channel上开启确认模式:channel.confirmSelect()
+ 2.在channel上添加监听:addConfirmListener,监听成功和失败的返回的结果,根据具体的结果对消息进行重新发送,或记录日志等后续处理
