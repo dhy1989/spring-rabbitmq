@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * <p>ReturnListener主要用于没有路由到指定队列的消息</p>
  * @author dinghy
  * @date 2019/7/9 17:48
  */
@@ -20,6 +21,7 @@ public class Producer {
 
         String exchangeName = "test.return,exchange";
         String routingKey = "return.save";
+        String routingErrorKey="return.error";
         String msg = "hello mq return listener";
         channel.addReturnListener(new ReturnListener() {
             @Override
@@ -34,7 +36,7 @@ public class Producer {
             }
         });
         channel.basicPublish(exchangeName, routingKey, true, false, null, msg.getBytes());
-
+        channel.basicPublish(exchangeName, routingErrorKey, true, false, null, msg.getBytes());
 
     }
 }
