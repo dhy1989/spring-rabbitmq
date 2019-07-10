@@ -21,3 +21,8 @@
  如何实现confirm确认消息
  1.在channel上开启确认模式:channel.confirmSelect()
  2.在channel上添加监听:addConfirmListener,监听成功和失败的返回的结果,根据具体的结果对消息进行重新发送,或记录日志等后续处理
+#消费端限流
+ 场景;rabbitMq服务器有上万条未处理的消息,我们随便打开个消费者客户端,会出现以下情况
+  --巨大的数据瞬间传送过来,我们单个客户端无法同时处理这麽多数据
+  rabbitMq提供了qos功能,即非自动确认消息的前提下,如果一定数据的消息(通过基于consumer和channel设置qos的值)未被确认前,不进行消费新的消息
+  
