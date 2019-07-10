@@ -1,8 +1,8 @@
 package com.example.api.direct;
 
 import com.example.api.conf.ConnectionConfig;
+import com.example.api.consumer.MyConsumer;
 import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.QueueingConsumer;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -21,11 +21,7 @@ public class Consumer {
         channel.exchangeDeclare(exchangeName, "direct");
         channel.queueDeclare(queueName,true,true,true,null);
         channel.queueBind(queueName,exchangeName,routKey);
-        QueueingConsumer consumer = new QueueingConsumer(channel);
-        channel.basicConsume(queueName,true,consumer);
-        while(true){
-            QueueingConsumer.Delivery delivery = consumer.nextDelivery();
-            System.out.println(new String(delivery.getBody(),"utf-8"));
-        }
+        channel.basicConsume(queueName,true,new MyConsumer(channel));
+
     }
 }
